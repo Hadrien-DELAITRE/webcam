@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Webcams</title>
+    <script src="http://localhost:8889/videojs/video.min.js"></script>
+    <script src="http://localhost:8889/videojs/videojs-contrib-hls.min.js"></script>
+    <link href="http://localhost:8889/videojs/video-js.min.css" rel="stylesheet">
+  </head>
+  <body>
+  
+    <video id="cam1" width="960" height="540"class="video-js vjs-default-skin" controls>
+      <source src="http://localhost:8889/cam1/cam1.m3u8" type="application/x-mpegURL">
+    </video>
+    <script>
+    var playerCam1 = videojs('cam1');
+    playerCam1.play();
+    </script>
+  
+    <video id="cam2" width="960" height="540"class="video-js vjs-default-skin" controls>
+      <source src="http://localhost:8889/cam2/cam2.m3u8" type="application/x-mpegURL">
+    </video>
+    <script>
+    var playerCam2 = videojs('cam2');
+    playerCam2.play();
+    </script>
+  
+  </body>
+</html>

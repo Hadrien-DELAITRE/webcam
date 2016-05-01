@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Webcam</title>
+
+    <link href="http://192.168.1.6:8889/videojs/video-js.min.css" rel="stylesheet">
+
+    <script src="http://192.168.1.6:8889/videojs/video.min.js"></script>
+    <script src="http://192.168.1.6:8889/videojs/videojs-contrib-hls.min.js"></script>
+  <!--<script src="http://localhost:8889/jwplayer-7.3.6/jwplayer.js"></script>-->
+  </head>
+  <body>
+    Hello World
+
+    <div id="1234"></div>
+    <script>
+    //window.jwplayer.key="AqywPClRbwZKpPRSbqUqqCn9/criyz+AP2UFag==";
+    //var playerInstance = window.jwplayer('1234');
+    /*playerInstance.setup({
+
+      sources: [{
+			file: "rtmp://localhost:2035/live/plante"
+		},{
+			file: "http://localhost:8889/playlist.m3u8"
+		}],
+    	height: 360,
+    	width: 640,
+      primary: 'flash'
+    });*/
+    </script>
+    <!--<video id="player_rtmp" class="flowplayer" controls width="624" height="260" preload="metadata">
+        <source type="application/x-mpegURL" src="http://localhost:8889/playlist.m3u8"/>
+    </video>-->
+    <video id="example-video" width="960" height="540"class="video-js vjs-default-skin" controls>
+      <source src="http://192.168.1.6:8889/720p.m3u8" type="application/x-mpegURL">
+      <!--<source src="rtmp://localhost:2035/live/plante" type="rtmp/mp4">-->
+    </video>
+    <script>
+    var player = videojs('example-video');
+    player.play();
+    </script>
+  </body>
+</html>

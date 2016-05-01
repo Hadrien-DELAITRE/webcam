@@ -1,0 +1,26 @@
+{
+  "name": "webcam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "videojs": "^1.0.0",
+    "videojs-contrib-hls": "^2.1.1"
+  },
+  "devDependencies": {
+    "cross-spawn": "^2.2.3",
+    "gulp": "^3.9.1",
+    "gulp-serve": "^1.2.0",
+    "gulp-spawn": "^0.3.0",
+    "gulp-template": "^4.0.0",
+    "gulp-watch": "^4.3.5",
+    "lodash": "^4.11.1",
+    "run-sequence": "^1.1.5",
+    "spawn-command": "0.0.2-1"
+  }
+}
