@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>cam3</title>
-    <script src="http://192.168.1.8:8889/videojs/video.min.js"></script>
-    <script src="http://192.168.1.8:8889/videojs/videojs-contrib-hls.min.js"></script>
-    <link href="http://192.168.1.8:8889/videojs/video-js.min.css" rel="stylesheet">
+    <script src="http://localhost:8889/videojs/video.min.js"></script>
+    <script src="http://localhost:8889/videojs/videojs-contrib-hls.min.js"></script>
+    <link href="http://localhost:8889/videojs/video-js.min.css" rel="stylesheet">
   </head>
   <body>
     <video id="cam3" width="960" height="540"class="video-js vjs-default-skin" controls>
-      <source src="http://192.168.1.8:8889/cam3/cam3.m3u8" type="application/x-mpegURL">
+      <source src="http://localhost:8889/cam3/cam3.m3u8" type="application/x-mpegURL">
     </video>
     <script>
     var playerCam = videojs('cam3');

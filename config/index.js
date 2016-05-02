@@ -1,6 +1,6 @@
 var path = require('path');
 
-var ip = '192.168.1.8';
+var ip = 'localhost';
 var port = '8889';
 
 var cams = [

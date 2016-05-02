@@ -2,3 +2,4 @@
 node_modules
 dist/**/segment*.ts
 dist/**/*.m3u8
+dist/**/*.tmp
