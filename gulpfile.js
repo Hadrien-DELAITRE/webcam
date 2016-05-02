@@ -1,5 +1,6 @@
 var _ = require('lodash');
 var gulp = require('gulp');
+var rename = require('gulp-rename');
 var serve = require('gulp-serve');
 var template = require('gulp-template');
 var watch = require('gulp-watch');
@@ -10,15 +11,11 @@ var childProcess = require("child_process");
 var config = require('./config');
 var rtmpServer = require('./rtmp/server');
 
-var rtmpPort = 2035;
-var streamDestfolder = 'd:/Projets/millenium_school/webcam/dist/';
-var rtmpBaseUrl = `rtmp://${config.ip}:${rtmpPort}/live/`;
-
 gulp.task('ffmpeg', (done) => {
   _.each(config.cams, (cam) => {
-    var streamDestFileCam = `${streamDestfolder}${cam.streamCam}/${cam.streamCam}`;
-    var streamDestFileSegments = `${streamDestfolder}${cam.streamCam}/segment%05d.ts`;
-    var streamSourceUrl = `${rtmpBaseUrl}${cam.streamCam}`;
+    var streamDestFileCam = `${config.streamDestFolder}${cam.streamCam}/${cam.streamCam}`;
+    var streamDestFileSegments = `${config.streamDestFolder}${cam.streamCam}/segment%05d.ts`;
+    var streamSourceUrl = `${config.rtmpBaseUrl}${cam.streamCam}`;
     console.log(`ffmpeg -re -i ${streamSourceUrl} -codec copy -map 0 -f segment -segment_list ${streamDestFileCam}.m3u8 -segment_time 10 -segment_list_type m3u8 -bsf:v h264_mp4toannexb ${streamDestFileSegments}`);
     var ffmpeg = childProcess.spawn("ffmpeg", [
         "-re",
@@ -28,6 +25,7 @@ gulp.task('ffmpeg', (done) => {
         "-f", "segment",
         "-segment_list", `${streamDestFileCam}.m3u8`,
         "-segment_time", "10",
+        "-segment_wrap", "10",
         "-segment_list_type", "m3u8",
         "-bsf:v", "h264_mp4toannexb",
         `${streamDestFileSegments}`,
@@ -58,11 +56,26 @@ gulp.task('rtmp', (done) => {
   rtmpServer(done);
 });
 
-gulp.task('build', () =>
+gulp.task('all', () =>
+	gulp.src('src/all.html')
+		.pipe(template({ ip: config.ip, port: config.port, cams: config.cams }))
+		.pipe(gulp.dest('dist'))
+);
+
+gulp.task('build', _.map(config.cams, (cam) => `build${_.capitalize(cam.streamCam)}`).concat('all'), () =>
 	gulp.src('src/webcams.html')
 		.pipe(template({ ip: config.ip, port: config.port, cams: config.cams }))
 		.pipe(gulp.dest('dist'))
 );
+
+_.each(config.cams, (cam) => {
+  gulp.task(`build${_.capitalize(cam.streamCam)}`, () =>
+  	gulp.src('src/webcam.html')
+  		.pipe(template({ ip: config.ip, port: config.port, cam: cam }))
+      .pipe(rename(`${cam.streamCam}.html`))
+  		.pipe(gulp.dest(`dist/`))
+  );
+})
 
 gulp.task('start', () => runSequence('build', 'rtmp', 'serve'));
 

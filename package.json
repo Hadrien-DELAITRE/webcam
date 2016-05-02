@@ -14,13 +14,16 @@
   },
   "devDependencies": {
     "cross-spawn": "^2.2.3",
+    "ejs": "0.8.x",
     "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
     "gulp-serve": "^1.2.0",
     "gulp-spawn": "^0.3.0",
     "gulp-template": "^4.0.0",
     "gulp-watch": "^4.3.5",
     "lodash": "^4.11.1",
     "run-sequence": "^1.1.5",
+    "sequent": ">= 0.1.2",
     "spawn-command": "0.0.2-1"
   }
 }

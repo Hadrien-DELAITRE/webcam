@@ -9,9 +9,7 @@
   </head>
   <body>
   <% _.forEach(cams, function(cam, index) { %>
-    <a href="http://<%=ip%>:<%=port%>/<%=cam.streamCam%>.html">Accéder à la caméra : <%=cam.streamCam%></a> <br /><br />
+    <iframe src="http://<%=ip%>:<%=port%>/<%=cam.streamCam%>.html" width="960" height="540"></iframe>
   <% }); %>
-
-  <a href="http://<%=ip%>:<%=port%>/all.html"> Toutes les caméras </a>
   </body>
 </html>
